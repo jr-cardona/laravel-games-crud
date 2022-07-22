@@ -13,15 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::redirect('/', '/login');
+Route::redirect('/', '/games');
 
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-    Route::view('/dashboard', 'dashboard')->name('dashboard');
+    Route::redirect('/dashboard', '/games')->name('dashboard');
+
+    Route::get('games', \App\Http\Livewire\Games\Index::class)->name('games.index');
 });
-
-
-Route::get('games', \App\Http\Livewire\Games\Index::class)->name('games.index');

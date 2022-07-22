@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Domain\Games\Enums\StatusEnum;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class GameSaveRequest extends FormRequest
 {
@@ -11,7 +13,7 @@ class GameSaveRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -21,14 +23,14 @@ class GameSaveRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'name' => ['required', 'string', 'max:100'],
-            'url' => ['required', 'string'],
+            'url' => ['required', 'url'],
             'description' => ['required', 'string'],
-            'url_image' => ['required', 'string'],
-            'status' => ['required', 'string'],
+            'url_image' => ['required', 'url'],
+            'status' => ['required', Rule::in(StatusEnum::names())],
         ];
     }
 }

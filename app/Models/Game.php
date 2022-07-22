@@ -3,10 +3,12 @@
 namespace App\Models;
 
 use App\Domain\Games\QueryBuilders\GameQueryBuilder;
+use App\Presenters\HasRoutesPresenter;
 use Barryvdh\LaravelIdeHelper\Eloquent;
 use Database\Factories\GameFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 /**
  * App\Models\Game
@@ -26,6 +28,7 @@ use Illuminate\Database\Eloquent\Model;
 class Game extends Model
 {
     use HasFactory;
+    use HasRoutesPresenter;
 
     public function newEloquentBuilder($query): GameQueryBuilder
     {
@@ -53,4 +56,9 @@ class Game extends Model
     protected $casts = [
         'id' => 'integer',
     ];
+
+    public function excerptDescription(): string
+    {
+        return Str::words($this->description, 10);
+    }
 }

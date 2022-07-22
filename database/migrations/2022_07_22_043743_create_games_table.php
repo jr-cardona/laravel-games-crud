@@ -20,7 +20,7 @@ return new class extends Migration
             $table->longText('url');
             $table->longText('description');
             $table->longText('url_image');
-            $table->enum('status', StatusEnum::names());
+            $table->enum('status', StatusEnum::names())->default(StatusEnum::ACTIVE->name);
             $table->timestamps();
         });
     }
