@@ -26,7 +26,7 @@
                                 {{ __('Edit') }}
                             </x-jet-secondary-button>
                             <a href="{{ $game->url }}" target="_blank">
-                                <x-jet-button>Try out!</x-jet-button>
+                                <x-jet-button>{{ __('Try out') }}!</x-jet-button>
                             </a>
                         </div>
                     </div>
