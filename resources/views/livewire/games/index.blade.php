@@ -1,7 +1,8 @@
 <section class="text-gray-600 body-font">
-    <div class="container px-5 py-24 mx-auto">
+    <div class="container px-5 mx-auto">
         <div class="flex items-center justify-center px-4 py-3 sm:py-6 text-right">
-            <x-jet-button wire:click="openEditModal">
+            <x-search></x-search>
+            <x-jet-button class="mx-10" wire:click="openEditModal">
                 <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
                 {{ __('Create Game') }}
             </x-jet-button>
@@ -31,6 +32,9 @@
                     </div>
                 </div>
             @endforeach
+        </div>
+        <div class="mt-5 px-4 py-3 bg-gray-50 border-t">
+            {{ $games->links() }}
         </div>
     </div>
 
