@@ -2,12 +2,20 @@
 
 namespace App\Http\Livewire\Games;
 
-use Livewire\Component;
+use App\Domain\Games\ViewModels\GameIndexViewModel;
+use App\Models\Game;
+use Illuminate\View\View;
 
-class Index extends Component
+class Index extends \App\Http\Livewire\Index
 {
-    public function render()
+    public function render(GameIndexViewModel $viewModel): View
     {
-        return view('livewire.games.index');
+        $games = Game::query()
+            ->where('name', 'like', "%$this->search%")
+            ->paginate($this->paginate);
+
+        return view('livewire.games.index', $viewModel->collection([
+            'games' => $games,
+        ]));
     }
 }

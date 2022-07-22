@@ -24,4 +24,4 @@ Route::middleware([
 });
 
 
-Route::get('games', \App\Http\Livewire\Games\Index::class);
+Route::get('games', \App\Http\Livewire\Games\Index::class)->name('games.index');
