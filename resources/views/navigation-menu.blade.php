@@ -19,6 +19,12 @@
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
+                <x-jet-dropdown align="right" width="48">
+                    <x-slot name="trigger">{{ __('Language') }}</x-slot>
+                    <x-slot name="content">
+                        <x-language-switcher></x-language-switcher>
+                    </x-slot>
+                </x-jet-dropdown>
                 <!-- Teams Dropdown -->
                 @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
                     <div class="ml-3 relative">

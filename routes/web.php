@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\LocalizationController;
+use App\Http\Livewire\Games\Index;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', '/games');
 
+Route::get('language/{locale}', LocalizationController::class)->name('locale.update');
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -22,5 +26,5 @@ Route::middleware([
 ])->group(function () {
     Route::redirect('/dashboard', '/games')->name('dashboard');
 
-    Route::get('games', \App\Http\Livewire\Games\Index::class)->name('games.index');
+    Route::get('games', Index::class)->name('games.index');
 });
