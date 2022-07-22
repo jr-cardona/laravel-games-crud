@@ -2,8 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Domain\Games\Enums\StatusEnum;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 use App\Models\Game;
 
 class GameFactory extends Factory
@@ -20,14 +20,14 @@ class GameFactory extends Factory
      *
      * @return array
      */
-    public function definition()
+    public function definition(): array
     {
         return [
             'name' => $this->faker->name(),
             'url' => $this->faker->url(),
             'description' => $this->faker->text(),
-            'url_image' => $this->faker->text(),
-            'status' => $this->faker->text(),
+            'url_image' => $this->faker->url(),
+            'status' => $this->faker->randomElement(StatusEnum::names()),
         ];
     }
 }
